@@ -24,7 +24,7 @@ class TaskIndex extends Component
         $this->tasks = Task::with('user')->get();
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -33,7 +33,9 @@ class TaskIndex extends Component
             'name' => $this->name,
         ]);
 
-        return $this->redirect(route('tasks.index'));
+        session()->flash('message', 'Task sucessfully created');
+
+        $this->redirect(route('tasks.index'));
     }
 
     public function render(): View|Factory
