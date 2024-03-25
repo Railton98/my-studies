@@ -9,6 +9,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('tasks', TaskIndex::class);
+Route::get('tasks', TaskIndex::class)->name('tasks.index');
 Route::get('tasks/create', TaskCreate::class);
 Route::get('tasks/{task}', TaskShow::class);
