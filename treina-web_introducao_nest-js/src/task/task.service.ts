@@ -20,12 +20,12 @@ export class TaskService {
     return await this.taskRepository.save(task);
   }
 
-  findAll() {
-    return `This action returns all task`;
+  async findAll() {
+    return await this.taskRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async findOne(id: number) {
+    return await this.taskRepository.findOneBy({ id });
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
