@@ -15,4 +15,12 @@ class IndexController extends AbstractController
             'controller_name' => 'IndexController',
         ]);
     }
+    
+    #[Route('/post/{slug?}', name: 'app_show')]
+    public function show(?string $slug = null): Response
+    {
+        return $this->render('index/single.html.twig', [
+            'slug' => $slug,
+        ]);
+    }
 }
