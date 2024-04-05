@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Postagens ✅</h1>
 
-    This friendly message is coming from:
+    Recentes:
     <ul>
-        <li>Your controller at <code>/app/src/Controller/IndexController.php</code></li>
-        <li>Your template at <code>/app/templates/index/index.html.twig</code></li>
+    {% for post in posts %}
+        <li>{{ post.title }}</li>
+    {% else %}
+        <h3>Nenhuma postagem encontrada...</h3>
+    {% endfor %}
     </ul>
 </div>
 {% endblock %}

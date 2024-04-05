@@ -12,7 +12,7 @@ class IndexController extends AbstractController
     public function index(): Response
     {
         return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'posts' => $this->getPosts(),
         ]);
     }
     
@@ -22,5 +22,14 @@ class IndexController extends AbstractController
         return $this->render('index/single.html.twig', [
             'slug' => $slug,
         ]);
+    }
+
+    private function getPosts(): array
+    {
+        return [
+            ['id' => 1, 'title' => 'Postagem 001'],
+            ['id' => 2, 'title' => 'Postagem 002'],
+            ['id' => 3, 'title' => 'Postagem 003'],
+        ];
     }
 }
