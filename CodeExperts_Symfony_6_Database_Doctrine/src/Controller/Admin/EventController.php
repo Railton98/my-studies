@@ -48,6 +48,11 @@ class EventController extends AbstractController
     public function update(EntityManagerInterface $manager, EventRepository $eventRepository): Response
     {
         $event = $eventRepository->find(1);
+
+        if (! $event) {
+            throw $this->createNotFoundException('Evento não encontrado!');
+        }
+
         $event->setTitle('Evento 1 Atualizado!!');
         $event->setUpdatedAt(
             new DateTimeImmutable('now', new DateTimeZone('America/Sao_Paulo'))
@@ -56,5 +61,20 @@ class EventController extends AbstractController
         $manager->flush();
 
         return new Response('Evendo atualizado com sucesso!');
+    }
+
+    #[Route('/remove', name: 'remove', methods: 'GET')]
+    public function remove(EntityManagerInterface $manager, EventRepository $eventRepository): Response
+    {
+        $event = $eventRepository->find(1);
+
+        if (! $event) {
+            throw $this->createNotFoundException('Evento não encontrado!');
+        }
+
+        $manager->remove($event);
+        $manager->flush();
+
+        return new Response('Evendo removido com sucesso!');
     }
 }
