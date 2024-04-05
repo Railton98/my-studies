@@ -3,28 +3,28 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Postagens ✅</h1>
-
-    Recentes:
+<div class="w-full">
+    <h1 class="pb-2 my-10 text-4xl border-b border-gray-400">Postagens ✅</h1>
     {#
     {% set test = 'variavel template twig' %}
 
     {{ test }}
     #}
-    <ul>
+    <div class="w-full">
     {% for post in posts %}
-        <li>
-            {{ post.title }} - <a href="{{ path('app_show', {slug: post.slug}) }}">Ler agora...</a>
-        </li>
+        <div class="block pb-2 mb-10 border-b border-gray-400">
+            <h2 class="mb-5 text-2xl font-bold">
+                {{ post.title }}
+            </h2>
+
+            <a class="font-bold text-blue-600 hover:underline" href="{{ path('app_show', {slug: post.slug}) }}">
+                Ler agora...
+            </a>
+        </div>
     {% else %}
         <h3>Nenhuma postagem encontrada...</h3>
     {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
