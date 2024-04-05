@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Event;
+use App\Repository\EventRepository;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
@@ -41,5 +42,19 @@ class EventController extends AbstractController
         $manager->flush();
 
         return new Response('Evendo criado com sucesso!');
+    }
+
+    #[Route('/update', name: 'update', methods: 'GET')]
+    public function update(EntityManagerInterface $manager, EventRepository $eventRepository): Response
+    {
+        $event = $eventRepository->find(1);
+        $event->setTitle('Evento 1 Atualizado!!');
+        $event->setUpdatedAt(
+            new DateTimeImmutable('now', new DateTimeZone('America/Sao_Paulo'))
+        );
+
+        $manager->flush();
+
+        return new Response('Evendo atualizado com sucesso!');
     }
 }
