@@ -12,9 +12,16 @@
     <h1>Postagens ✅</h1>
 
     Recentes:
+    {#
+    {% set test = 'variavel template twig' %}
+
+    {{ test }}
+    #}
     <ul>
     {% for post in posts %}
-        <li>{{ post.title }}</li>
+        <li>
+            {{ post.title }} - <a href="{{ path('app_show', {slug: post.slug}) }}">Ler agora...</a>
+        </li>
     {% else %}
         <h3>Nenhuma postagem encontrada...</h3>
     {% endfor %}
