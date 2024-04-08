@@ -1,0 +1,22 @@
+### List All ###
+GET http://localhost:3000/tasks HTTP/1.1
+
+### Create ###
+POST http://localhost:3000/tasks HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "titulo": "Task 002",
+    "descricao": "Descrição aqui..."
+}
+
+### Update ###
+PATCH http://localhost:3000/tasks/3 HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "titulo": "Task 003",
+    "status": 2
+}
