@@ -1,0 +1,21 @@
+{
+  "name": "railton98/php-framework-pro",
+  "description": "A PHP framework tutorial project",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Railton L Rodrigues",
+      "email": "railtonleal98@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Tecks\\Framework\\": "framework/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "7.1.x-dev"
+  }
+}
