@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use Tecks\Framework\Http\Kernel;
 use Tecks\Framework\Http\Request;
-use Tecks\Framework\Http\Response;
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
@@ -11,9 +11,8 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 $request = Request::createFromGlobals();
 
 // perform some logic
+$kernel = new Kernel();
 
 // send response (string of content)
-$content = '<h1>Hello World</h1>';
-
-$response = new Response(content: $content, status: 200, headers: []);
+$response = $kernel->handle($request);
 $response->send();
