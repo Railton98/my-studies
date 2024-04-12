@@ -1,6 +1,12 @@
-{% if title %}
-	<p>{{ title }}
-		is a movie</p>
-{% else %}
-	<p>Whoops, no title has been set.</p>
-{% endif %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ author }} <br>
+{{ _self }} <br>
+{{ _charset }}
+	<ul>
+		{% for movie in movies %}
+			<li>{{ movie }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
