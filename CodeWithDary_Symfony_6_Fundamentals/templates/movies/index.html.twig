@@ -1,0 +1,42 @@
+{% extends "./base.html.twig" %}
+
+{% block body %}
+	<div class="w-4/5 m-auto text-center">
+		<div class="py-12 border-b border-gray-200">
+			<h1 class="pt-12 pb-8 text-6xl">
+				Movies Review ({{ movies|length }})
+			</h1>
+
+			<span class="italic font-light text-gray-500">
+				Created by Code With Dary
+			</span>
+		</div>
+	</div>
+
+	<div
+		class="w-4/5 gap-20 mx-auto md:grid lg:grid-cols-3 py-15 ">
+		<!-- Blog Item -->
+		{% for movie in movies %}
+			<div class="pt-8 pb-4 text-center">
+				<img src="{{ movie.imagePath }}" alt="" class="rounded-md shadow-xl">
+
+				<h2 class="py-2 text-3xl font-bold text-gray-700">
+					{{ movie.title }}
+				</h2>
+
+				<span class="text-gray-500">
+					By
+					<span class="text-sm italic text-gray-800">Code With Dary | 28.01.2022
+					</span>
+
+					<p class="pt-4 pb-10 text-base font-light leading-8 text-gray-700">
+						{{ movie.description }}
+					</p>
+
+					<a href="movies/{{ movie.id }}" class="px-12 py-4 text-lg text-gray-600 uppercase transition-all border border-gray-500 rounded hover:bg-gray-800 hover:text-white">
+						Keep Reading
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
