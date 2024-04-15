@@ -26,11 +26,13 @@
 			{{ movie.description }}
 		</p>
 
-		<a href="/movies/edit/{{ movie.id }}" class="px-4 py-2 font-bold transition-all bg-green-500 rounded hover:bg-green-300">
-			Edit Movie
-		</a>
-		<a href="/movies/delete/{{ movie.id }}" class="px-4 py-2 ml-6 font-bold transition-all bg-red-500 rounded hover:bg-red-300">
-			Delete Movie
-		</a>
+		{% if app.user %}
+			<a href="/movies/edit/{{ movie.id }}" class="px-4 py-2 font-bold transition-all bg-green-500 rounded hover:bg-green-300">
+				Edit Movie
+			</a>
+			<a href="/movies/delete/{{ movie.id }}" class="px-4 py-2 ml-6 font-bold transition-all bg-red-500 rounded hover:bg-red-300">
+				Delete Movie
+			</a>
+		{% endif %}
 	</div>
 {% endblock %}
