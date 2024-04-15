@@ -25,5 +25,9 @@
 		<p class="py-6 text-xl">
 			{{ movie.description }}
 		</p>
+
+		<a href="/movies/edit/{{ movie.id }}" class="px-4 py-2 font-bold transition-all bg-green-500 rounded hover:bg-green-300">
+			Edit Movie
+		</a>
 	</div>
 {% endblock %}

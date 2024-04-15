@@ -1,31 +1,17 @@
-<div class="w-4/5 m-auto text-left">
-    <div class="py-15">
-        <h1 class="text-6xl">
-            Edit Movie Review
-        </h1>
-    </div>
-</div>
+{% extends "./base.html.twig" %}
 
-<div class="w-4/5 pt-20 m-auto">
-    <form 
-        action="/movies"
-        method="POST"
-        enctype="multipart/form-data">
-        <input 
-            type="text"
-            name="title"
-            value="Review title"
-            class="block w-full h-20 text-6xl bg-transparent border-b-2 outline-none">
+{% block body %}
+	<div class="w-4/5 pt-20 m-auto">
+		<h1 class="pb-12 text-6xl text-center">
+			Edit Movie Review
+		</h1>
 
-        <textarea 
-            name="description"
-            placeholder="Review Description"
-            class="block w-full py-20 text-xl bg-transparent border-b-2 outline-none h-60">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos veritatis, omnis dolores error ad molestias cum accusantium odit doloremque ratione illo architecto commodi placeat deleniti provident eveniet cupiditate eius at.</textarea> 
+		{{ form_start(form) }}
+			{{ form_widget(form) }}
 
-        <button    
-            type="submit"
-            class="px-8 py-4 text-lg font-extrabold text-gray-100 uppercase bg-blue-500 mt-15 rounded-3xl">
-            Submit Review
-        </button>
-    </form>
-</div>
+			<button type="submit" class="px-8 py-4 text-lg font-extrabold text-gray-100 uppercase bg-blue-500 mt-15 rounded-3xl">
+				Submit Review
+			</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

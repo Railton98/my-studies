@@ -65,6 +65,51 @@ class MoviesController extends AbstractController
         ]);
     }
 
+    #[Route('/movies/edit/{id}', name: 'movies.edit')]
+    public function edit($id, Request $request): Response
+    {
+        $movie = $this->movieRepository->find($id);
+        $form = $this->createForm(MovieFormType::class, $movie);
+
+        $form->handleRequest($request);
+        $imagePath = $form->get('imagePath')->getData();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($imagePath) {
+                if ($movie->getImagePath() !== null) {
+                    if (file_exists($this->getParameter('kernel.project_dir') . '/public' . $movie->getImagePath())) {
+                        $newFileName = uniqid() . '.' . $imagePath->guessExtension();
+
+                        try {
+                            $imagePath->move(
+                                $this->getParameter('kernel.project_dir') . '/public/uploads',
+                                $newFileName
+                            );
+                        } catch (FileException $e) {
+                            return new Response($e->getMessage());
+                        }
+
+                        $movie->setImagePath('/uploads/' . $newFileName);
+                        $this->entityManagerInterface->flush();
+                        return $this->redirectToRoute('movies.index');
+                    }
+                }
+            } else {
+                $movie->setTitle($form->get('title')->getData());
+                $movie->setReleaseYear($form->get('releaseYear')->getData());
+                $movie->setDescription($form->get('description')->getData());
+
+                $this->entityManagerInterface->flush();
+                return $this->redirectToRoute('movies.index');
+            }
+        }
+
+        return $this->render('movies/edit.html.twig', [
+            'movie' => $movie,
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/movies/{id}', methods: ['GET'], name: 'movies.show')]
     public function show($id): Response
     {
