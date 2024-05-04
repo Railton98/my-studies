@@ -1,47 +1,48 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import Header from './components/Header.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <Header />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="board">
+    <div class="card">
+      <div class="card-title">To Do</div>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <div class="card">
+      <div class="card-title">Doing</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Done</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Observations</div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.board {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0.8rem;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.card {
+  background: var(--color-grey);
+  width: 23rem;
+  height: 30rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(33, 33, 33, 0.1);
+  margin: 3rem 0.8rem;
+  padding: 0 0.7rem;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.card-title {
+  padding: 0.8rem 0.5rem;
+  margin-bottom: 0.6rem;
 }
 </style>
