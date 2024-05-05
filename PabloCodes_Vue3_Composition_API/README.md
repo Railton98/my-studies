@@ -1,6 +1,6 @@
-# PabloCodes_Vue3_Composition_API
+# Vue 3 e Composition API
 
-This template should help get you started developing with Vue 3 in Vite.
+[Playlist](https://www.youtube.com/playlist?list=PLxd1RHU8YgYlF3Wk8-SW7UEowbqhBXtkp) Vue 3 e Composition API do canal [Pablo Codes](https://www.youtube.com/@PabloCodess)
 
 ## Recommended IDE Setup
 
@@ -10,7 +10,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
