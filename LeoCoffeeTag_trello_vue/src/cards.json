@@ -2,32 +2,32 @@
   "todo": [
     {
       "id": 1,
-      "title": "Primeira Tarefa"
+      "title": "Todo #01"
     },
     {
       "id": 2,
-      "title": "Segunda Tarefa"
+      "title": "Todo #02"
     },
     {
       "id": 3,
-      "title": "Terceira Tarefa"
+      "title": "Todo #03"
     }
   ],
   "doing": [
     {
       "id": 1,
-      "title": "Primeira Tarefa"
+      "title": "Doing #01"
     }
   ],
   "done": [],
   "observations": [
     {
       "id": 1,
-      "title": "Primeira Tarefa"
+      "title": "Observations #01"
     },
     {
       "id": 2,
-      "title": "Segunda Tarefa"
+      "title": "Observations #02"
     }
   ]
 }
