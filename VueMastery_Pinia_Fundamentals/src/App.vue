@@ -6,4 +6,12 @@
   <todo-app />
 </template>
 
-<style scoped></style>
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: antialiased;
+    text-align: center;
+    color: #2c3e50;
+  }
+</style>
