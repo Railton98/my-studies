@@ -11,4 +11,11 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .todo-app {
+    padding: 5vh;
+    min-height: 100vh;
+    width: 30vw;
+    background-color: #f7f9fc;
+  }
+</style>
