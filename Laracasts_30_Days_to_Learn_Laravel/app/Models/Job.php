@@ -13,7 +13,7 @@ class Job extends Model
 
     public function tag(string $name): void
     {
-        $tag = Tag::query()->firstOrCreate(['name' => $name]);
+        $tag = Tag::query()->firstOrCreate(['name' => strtolower($name)]);
 
         $this->tags()->attach($tag);
     }
