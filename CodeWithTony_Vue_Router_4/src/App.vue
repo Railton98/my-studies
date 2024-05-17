@@ -3,5 +3,7 @@
 <template>
   <h1>Header</h1>
 
-  <RouterView />
+  <div class="max-w-7xl mx-auto">
+    <RouterView />
+  </div>
 </template>
