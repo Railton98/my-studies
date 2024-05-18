@@ -1,32 +1,19 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
-  import { useRouter } from 'vue-router'
-  const props = defineProps({
-    id: {
-      type: String,
-      required: true,
-    },
-  })
-  const queryMovie = ref({})
-  const isLoading = ref(true)
-  const router = useRouter()
+  import { onMounted } from 'vue'
+  import { useMoviesStore } from '../stores/movies'
 
-  onMounted(async () => {
-    const result = await fetch(
-      `http://localhost:8000/movies/${parseInt(props.id)}`
-    )
-    if (result.status === 404) {
-      router.push({ name: 'NotFound' })
-    }
-    const response = await result.json()
-    queryMovie.value = response
-    isLoading.value = false
+  const props = defineProps({
+    id: { type: String, required: true },
   })
+
+  const moviesStore = useMoviesStore()
+
+  onMounted(() => moviesStore.getSingleMovie(props.id))
 </script>
 
 <template>
-  <section class="bg-white dark:bg-gray-900 m-6 p-4">
-    <div class="mx-auto" v-if="isLoading">
+  <section class="p-4 m-6 bg-white dark:bg-gray-900">
+    <div class="mx-auto" v-if="moviesStore.isLoading">
       <span class="text-2xl font-bold text-indigo-700 dark:text-indigo-400">
         Is Loading...
       </span>
@@ -38,8 +25,8 @@
       <div class="flex justify-center xl:w-1/2">
         <img
           class="h-80 w-80 sm:w-[28rem] sm:h-[28rem] flex-shrink-0 object-cover rounded-md"
-          :src="queryMovie.poster"
-          :alt="queryMovie.title"
+          :src="moviesStore.singleMovie.poster"
+          :alt="moviesStore.singleMovie.title"
         />
       </div>
 
@@ -49,13 +36,13 @@
         <h2
           class="text-3xl font-bold tracking-tight text-gray-800 xl:text-4xl dark:text-white"
         >
-          {{ queryMovie.title }}
+          {{ moviesStore.singleMovie.title }}
         </h2>
-        <span class="m-2 p-2 bg-slate-300 text-slate-800 rounded-md">
-          {{ queryMovie.year }}
+        <span class="p-2 m-2 rounded-md bg-slate-300 text-slate-800">
+          {{ moviesStore.singleMovie.year }}
         </span>
-        <span class="m-2 p-2 bg-slate-300 text-slate-800 rounded-md">
-          {{ queryMovie.runtime }}
+        <span class="p-2 m-2 rounded-md bg-slate-300 text-slate-800">
+          {{ moviesStore.singleMovie.runtime }}
         </span>
 
         <div class="mt-6 sm:-mx-2">

@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { onMounted } from 'vue'
   import { useMoviesStore } from '../stores/movies'
   import MovieCard from '../components/MovieCard.vue'
 
