@@ -6,8 +6,16 @@ export const useMoviesStore = defineStore('movies', {
     isLoading: false,
     query: '',
     singleMovie: {},
+    year: 2000,
   }),
-  getters: {},
+  getters: {
+    totalMovies() {
+      return this.filterMovies.length
+    },
+    filterMovies() {
+      return this.movies.filter((movie) => movie.year >= this.year)
+    },
+  },
   actions: {
     async getMovies() {
       this.isLoading = true
