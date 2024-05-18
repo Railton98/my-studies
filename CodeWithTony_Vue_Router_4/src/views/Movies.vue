@@ -23,7 +23,7 @@
       Is Loading...
     </span>
   </div>
-  <div class="grid grid-cols-3 gap-4" v-else>
+  <div class="grid grid-cols-3 gap-4 mb-10" v-else>
     <MovieCard v-for="movie in movieList" :key="movie.id" :movie />
   </div>
 </template>
