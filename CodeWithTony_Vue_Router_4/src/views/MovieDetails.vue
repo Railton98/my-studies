@@ -1,12 +1,12 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
-  // const props = defineProps({
-  //   id: {
-  //     type: String,
-  //     required: true,
-  //   },
-  // })
+  const props = defineProps({
+    id: {
+      type: String,
+      required: true,
+    },
+  })
   const queryMovie = ref({})
   const isLoading = ref(true)
   const router = useRoute()
@@ -14,7 +14,7 @@
   onMounted(() => {
     setTimeout(async () => {
       queryMovie.value = await (
-        await fetch(`http://localhost:8000/movies/${router.params.id}`)
+        await fetch(`http://localhost:8000/movies/${parseInt(props.id)}`)
       ).json()
       isLoading.value = false
     }, 500)

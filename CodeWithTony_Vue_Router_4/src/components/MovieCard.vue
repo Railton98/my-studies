@@ -12,7 +12,7 @@
       <img class="rounded-t-lg" :src="movie.poster" :alt="movie.title" />
     </div>
     <div class="p-5">
-      <RouterLink :to="`/movies/${movie.id}`">
+      <RouterLink :to="{ name: 'MovieDetails', params: { id: movie.id } }">
         <h5
           class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
