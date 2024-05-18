@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRouter } from 'vue-router'
   const props = defineProps({
     id: {
       type: String,
@@ -9,15 +9,18 @@
   })
   const queryMovie = ref({})
   const isLoading = ref(true)
-  const router = useRoute()
+  const router = useRouter()
 
-  onMounted(() => {
-    setTimeout(async () => {
-      queryMovie.value = await (
-        await fetch(`http://localhost:8000/movies/${parseInt(props.id)}`)
-      ).json()
-      isLoading.value = false
-    }, 500)
+  onMounted(async () => {
+    const result = await fetch(
+      `http://localhost:8000/movies/${parseInt(props.id)}`
+    )
+    if (result.status === 404) {
+      router.push({ name: 'NotFound' })
+    }
+    const response = await result.json()
+    queryMovie.value = response
+    isLoading.value = false
   })
 </script>
 
