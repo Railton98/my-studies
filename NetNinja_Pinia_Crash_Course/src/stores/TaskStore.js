@@ -65,6 +65,11 @@ export const useTaskStore = defineStore('taskStore', () => {
     }
   }
 
+  function $reset() {
+    tasks.value = []
+    loading.value = false
+  }
+
   return {
     tasks,
     loading,
@@ -77,5 +82,6 @@ export const useTaskStore = defineStore('taskStore', () => {
     addTask,
     deleteTask,
     toggleFav,
+    $reset,
   }
 })
