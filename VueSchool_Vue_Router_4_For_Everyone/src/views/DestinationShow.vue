@@ -1,19 +1,13 @@
 <script setup>
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import sourceData from '@/data.json'
 
-const route = useRoute()
+const props = defineProps({
+  id: { type: Number, required: true }
+})
 
-const destination = ref()
-
-watch(
-  route,
-  async (to) => {
-    destination.value = await (
-      await fetch(`https://travel-dummy-api.netlify.app/${to.params.slug}`)
-    ).json()
-  },
-  { flush: 'pre', immediate: true, deep: true }
+const destination = computed(() =>
+  sourceData.destinations.find((destination) => destination.id === props.id)
 )
 </script>
 
