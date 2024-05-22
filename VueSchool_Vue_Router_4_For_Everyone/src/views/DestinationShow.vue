@@ -21,7 +21,7 @@ const destination = computed(() =>
     </div>
   </section>
 
-  <div class="experiences">
+  <section class="experiences">
     <h2>Top Experiences in {{ destination.name }}</h2>
     <div class="cards">
       <RouterLink
@@ -32,5 +32,7 @@ const destination = computed(() =>
         <ExperienceCard :experience />
       </RouterLink>
     </div>
-  </div>
+
+    <RouterView />
+  </section>
 </template>
