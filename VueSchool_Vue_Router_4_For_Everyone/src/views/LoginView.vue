@@ -21,9 +21,9 @@ function login() {
     <form class="form" @submit.prevent="login">
       <h1>Login</h1>
       <label for="username">Username</label>
-      <input v-model="username" name="username" type="text" class="input" />
+      <input v-model="username" id="username" type="text" class="input" />
       <label for="password">Password</label>
-      <input v-model="password" name="password" type="password" class="input" />
+      <input v-model="password" id="password" type="password" class="input" />
       <button class="btn">Login</button>
     </form>
   </div>
