@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import sourceData from '@/data.json'
 
 import HomeView from '@/views/HomeView.vue'
 
@@ -15,6 +16,21 @@ const router = createRouter({
       name: 'destination.show',
       component: () => import('@/views/DestinationShow.vue'),
       props: (route) => ({ id: parseInt(route.params.id) }),
+      beforeEnter(to) {
+        const exists = sourceData.destinations.find(
+          (destination) => destination.id === parseInt(to.params.id)
+        )
+
+        if (!exists) {
+          return {
+            name: 'not-found',
+            // allows keeping the URL while rendering a different page
+            params: { pathMath: to.path.split('/').slice(1) },
+            query: to.query,
+            hash: to.hash
+          }
+        }
+      },
       children: [
         {
           path: ':experienceSlug',
