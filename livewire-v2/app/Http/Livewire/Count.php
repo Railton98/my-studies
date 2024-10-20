@@ -17,9 +17,9 @@ class Count extends Component
         return view('livewire.count');
     }
 
-    public function toggle(): void
+    public function toggle(string $type): void
     {
-        if ($this->name[0] === str($this->name[0])->upper()->toString()) {
+        if ($type === 'LOWER') {
             $this->name = str($this->name)->lower();
         } else {
             $this->name = str($this->name)->upper();
