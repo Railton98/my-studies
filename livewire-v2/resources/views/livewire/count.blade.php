@@ -5,6 +5,7 @@
         <x-text-input wire:model="name"/>
         <x-primary-button wire:click="toggle('UPPER')">UPPER</x-primary-button>
         <x-primary-button wire:click="toggle('LOWER')">LOWER</x-primary-button>
+        <x-primary-button wire:click="send">SEND TO TODO</x-primary-button>
     </div>
     {{$name}}
 </div>

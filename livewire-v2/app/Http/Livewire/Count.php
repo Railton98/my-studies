@@ -26,6 +26,11 @@ class Count extends Component
         }
     }
 
+    public function send(): void
+    {
+        $this->emitTo(Todo::class, 'mudaai', $this->name);
+    }
+
     public function getLastNameProperty(): string
     {
         return 'Teck\'s';
