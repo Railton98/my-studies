@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
@@ -36,5 +37,14 @@ class UserCreate extends Component
         if ($this->name == 'Rafael') {
             $this->addError('name', 'UUUUU Jeremias!!! Deu ruim nesse nome');
         }
+
+        User::query()->create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => 'qualquer-coisa'
+        ]);
+
+        $this->emit('user::created');
+        $this->reset('name', 'email');
     }
 }
