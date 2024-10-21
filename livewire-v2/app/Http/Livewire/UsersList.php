@@ -5,12 +5,14 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class UsersList extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
 
     public ?string $search = null;
     public ?string $searchEmail = null;
@@ -44,6 +46,11 @@ class UsersList extends Component
         }
 
         $this->sortBy = $column;
+    }
+
+    public function mount(): void
+    {
+        $this->authorize('users::list');
     }
 
     public function render(): View
