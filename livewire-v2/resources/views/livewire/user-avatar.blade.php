@@ -1,9 +1,12 @@
 <div>
+    <x-secondary-button wire:click="download">
+        Download
+    </x-secondary-button>
     <form wire:submit.prevent="save">
         <div>
             <x-input-label for="avatar" :value="__('Avatar')"/>
             @if($avatar)
-                <img src="{{ $avatar->temporaryUrl() }}" alt="">
+                <img src="{{ $avatar->temporaryUrl() }}" alt="" class="h-80">
             @endif
             <x-text-input
                 wire:model="avatar"
