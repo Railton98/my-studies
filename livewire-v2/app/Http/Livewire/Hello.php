@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Hello extends Component
@@ -15,49 +16,49 @@ class Hello extends Component
         'text' => ['required', 'min:3']
     ];
 
-    public function render()
+    public function render(): View
     {
-        info(__METHOD__);
+        ds(__METHOD__);
         return view('livewire.hello', [
             'user' => $this->user,
         ]);
     }
 
-    public function boot()
+    public function boot(): void
     {
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function booted()
+    public function booted(): void
     {
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->user = auth()->user();
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function hydrate()
+    public function hydrate(): void
     {
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function dehydrate()
+    public function dehydrate(): void
     {
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function updating()
+    public function updating(): void
     {
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 
-    public function updated($property)
+    public function updated($property): void
     {
         $this->validateOnly($property);
 
-        info(__METHOD__);
+        ds(__METHOD__);
     }
 }
