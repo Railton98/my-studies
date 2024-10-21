@@ -61,6 +61,6 @@ class UsersList extends Component
                 ->when($this->sortBy, fn(Builder $query) => $query->orderBy($this->sortBy, $this->sortDir)
                 )
                 ->paginate($this->limit),
-        ]);
+        ])->layout('layouts.app', ['header' => __('Users')]);
     }
 }
