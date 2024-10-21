@@ -12,6 +12,8 @@ class UserCreate extends Component
 
     public ?string $email = null;
 
+    public bool $saving = false;
+
     protected function rules(): array
     {
         return [
@@ -32,7 +34,7 @@ class UserCreate extends Component
 
     public function save(): void
     {
-        sleep(2);
+        $this->saving = true;
         $this->validate();
 
         if ($this->name == 'Rafael') {
