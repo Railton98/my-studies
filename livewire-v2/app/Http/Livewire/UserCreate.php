@@ -32,6 +32,7 @@ class UserCreate extends Component
 
     public function save(): void
     {
+        sleep(2);
         $this->validate();
 
         if ($this->name == 'Rafael') {
