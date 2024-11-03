@@ -1,18 +1,23 @@
 import axios from "axios";
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at?: Date;
+  two_factor_confirmed_at?: Date;
+  two_factor_recovery_codes?: number;
+  two_factor_secret?: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+const user = ref<User | null>(null);
+
 export const useAuth = () => {
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    email_verified_at?: Date;
-    two_factor_confirmed_at?: Date;
-    two_factor_recovery_codes?: number;
-    two_factor_secret?: string;
-    created_at: Date;
-    updated_at: Date;
-  }
   async function getUser(): Promise<User | null> {
+    if (user.value) return user.value;
+
     try {
       const res = await axios.get("/user");
       const user = res.data;
@@ -31,6 +36,10 @@ export const useAuth = () => {
     } catch (error) {
       return null;
     }
+  }
+
+  async function initUser() {
+    user.value = await getUser();
   }
 
   interface LoginPayload {
@@ -64,5 +73,5 @@ export const useAuth = () => {
     });
   }
 
-  return { getUser, login, logout, register };
+  return { user, initUser, login, logout, register };
 };
