@@ -9,4 +9,5 @@ const { user } = useAuth();
 <template>
   <p><strong>User Name:</strong> {{ user?.name ?? '-' }}</p>
   <p><strong>User Email:</strong> {{ user?.email ?? '-' }}</p>
+  <NuxtLink :to="`/profiles/${user?.id}`">View Profile</NuxtLink>
 </template>
