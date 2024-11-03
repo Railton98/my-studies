@@ -1,32 +1,12 @@
 <script setup lang="ts">
-import axios from 'axios';
+import axios from "axios";
 
-await axios.get('/links');
+const { data } = await axios.get("/links");
+const links = data.data;
 
 definePageMeta({
   middleware: ["auth"],
 });
-
-const links = [
-  {
-    short_link: "234jlsfsf",
-    full_link: "https://vueschool.io",
-    views: 3,
-    id: 1,
-  },
-  {
-    short_link: "adfaowerw",
-    full_link: "https://google.com",
-    views: 1,
-    id: 2,
-  },
-  {
-    short_link: "234sfdjaip",
-    full_link: "https://vuejsnation.com/",
-    views: 0,
-    id: 3,
-  },
-];
 </script>
 <template>
   <div>
