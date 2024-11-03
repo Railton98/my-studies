@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import axios from 'axios';
+
+await axios.get('/links');
+
 definePageMeta({
   middleware: ["auth"],
 });
