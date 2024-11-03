@@ -8,7 +8,7 @@ const queries = ref({
   ...useRoute().query,
 });
 
-const { data, index: getLinks } = useLinks({ queries });
+const { data, index: getLinks, destroy } = useLinks({ queries });
 
 await getLinks();
 
@@ -21,6 +21,13 @@ watch(queries, () => useRouter().push({ query: queries.value }), {
 definePageMeta({
   middleware: ["auth"],
 });
+
+async function handleDelete(id: number) {
+  await destroy(id);
+  if (data.value) {
+    data.value.data = data.value?.data.filter((link) => link.id !== id);
+  }
+}
 </script>
 <template>
   <div>
@@ -78,12 +85,14 @@ definePageMeta({
             </td>
             <td>{{ link.views }}</td>
             <td>
-              <NuxtLink class="no-underline" :to="`/links/${link.id}`"
-                ><iconEdit
-              /></NuxtLink>
+              <NuxtLink class="no-underline" :to="`/links/${link.id}`">
+                <IconEdit />
+              </NuxtLink>
             </td>
             <td>
-              <button><IconTrash /></button>
+              <button @click="handleDelete(link.id)">
+                <IconTrash />
+              </button>
             </td>
             <td></td>
           </tr>

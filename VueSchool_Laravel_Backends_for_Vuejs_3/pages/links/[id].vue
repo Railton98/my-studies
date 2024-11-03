@@ -13,6 +13,7 @@ await find(Number(useRoute().params.id));
 async function handleUpdate(payload: Partial<Link>, node?: FormKitNode) {
   try {
     await update(Number(useRoute().params.id), payload);
+    useRouter().push("/links");
   } catch (err) {
     handleInvalidForm(err, node);
   }
