@@ -20,8 +20,13 @@ const form = ref({
 });
 
 async function register(payload: RegisterPayload) {
-  const res = await axios.post("/register", payload);
-  console.log(res);
+  await axios.post("/register", payload);
+
+  await axios.post("/login", {
+    email: payload.email,
+    password: payload.password,
+  });
+  useRouter().push("/me");
 }
 </script>
 
