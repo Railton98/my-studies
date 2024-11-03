@@ -4,19 +4,31 @@ import axios from "axios";
 import { TailwindPagination } from "laravel-vue-pagination";
 
 const data = ref<PaginatedResponse<Link> | null>(null);
-const page = ref(useRoute().query.page || 1);
+
+const queries = ref({
+  page: 1,
+  sort: "",
+  "filter[full_link]": "",
+  ...useRoute().query,
+});
 
 await getLinks();
 
 let links = computed(() => data.value?.data);
 
-watch(page, async () => {
-  getLinks();
-  useRouter().push({ query: { page: page.value } });
-});
+watch(
+  queries,
+  async () => {
+    getLinks();
+    useRouter().push({ query: queries.value });
+  },
+  { deep: true }
+);
 
 async function getLinks() {
-  const { data: res } = await axios.get(`/links?page=${page.value}`);
+  // @ts-expect-error page is number and that's ok
+  const qs = new URLSearchParams(queries.value).toString();
+  const { data: res } = await axios.get(`/links?${qs}`);
   data.value = res;
 }
 
@@ -29,7 +41,7 @@ definePageMeta({
     <nav class="flex justify-between mb-4 items-center">
       <h1 class="mb-0">My Links</h1>
       <div class="flex items-center">
-        <SearchInput modelValue="" />
+        <SearchInput v-model="queries['filter[full_link]']" />
         <NuxtLink to="/links/create" class="ml-4">
           <IconPlusCircle class="inline" /> Create New
         </NuxtLink>
@@ -40,13 +52,21 @@ definePageMeta({
       <table class="table-fixed w-full">
         <thead>
           <tr>
-            <th class="w-[35%]">Full Link</th>
-            <th class="w-[35%]">Short Link</th>
-            <th class="w-[10%]">Views</th>
+            <TableTh v-model="queries.sort" name="full_link" class="w-[29%]">
+              Full Link
+            </TableTh>
+            <TableTh v-model="queries.sort" name="short_link" class="w-[29%]">
+              Short Link
+            </TableTh>
+            <TableTh v-model="queries.sort" name="views" class="w-[16%]">
+              Views
+            </TableTh>
             <th class="w-[10%]">Edit</th>
             <th class="w-[10%]">Trash</th>
             <th class="w-[6%] text-center">
-              <button><IconRefresh /></button>
+              <button>
+                <IconRefresh class="w-[15px] relative top-[2px]" />
+              </button>
             </th>
           </tr>
         </thead>
@@ -85,7 +105,7 @@ definePageMeta({
       </table>
       <TailwindPagination
         :data="data"
-        @pagination-change-page="page = $event"
+        @pagination-change-page="queries.page = $event"
       />
       <div class="mt-5 flex justify-center"></div>
     </div>
