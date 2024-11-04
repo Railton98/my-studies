@@ -17,6 +17,11 @@
     <x-secondary-button wire:click="add10('num1')">add 10 num1</x-secondary-button>
     <x-secondary-button wire:click="add10('num2')">add 10 num2</x-secondary-button>
 
+    <x-secondary-button wire:click="logging()">
+        Só Logando
+        <span wire:loading wire:target="logging">...</span>
+    </x-secondary-button>
+
     <br>
     <span
         wire:loading

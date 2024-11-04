@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Livewire\Attributes\Renderless;
 use Livewire\Component;
 
 class Calculator extends Component
@@ -33,6 +35,12 @@ class Calculator extends Component
     public function add10(string $prop): void
     {
         $this->$prop += 10;
+    }
+
+    #[Renderless]
+    public function logging(): void
+    {
+        Log::info('logando... '.now()->timestamp);
     }
 
     public function render(): View
