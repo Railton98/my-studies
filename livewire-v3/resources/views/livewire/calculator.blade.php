@@ -12,6 +12,8 @@
         <span wire:loading wire:target="calculate">Calculando...</span>
     </x-primary-button>
 
+    <x-primary-button @click="$wire.calculate()">Calcular pelo Alpine</x-primary-button>
+
     <x-secondary-button wire:click="add10('num1')">add 10 num1</x-secondary-button>
     <x-secondary-button wire:click="add10('num2')">add 10 num2</x-secondary-button>
 
