@@ -12,6 +12,9 @@
         <span wire:loading wire:target="calculate">Calculando...</span>
     </x-primary-button>
 
+    <x-secondary-button wire:click="add10('num1')">add 10 num1</x-secondary-button>
+    <x-secondary-button wire:click="add10('num2')">add 10 num2</x-secondary-button>
+
     <br>
     <span
         wire:loading

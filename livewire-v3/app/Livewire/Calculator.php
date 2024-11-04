@@ -30,6 +30,11 @@ class Calculator extends Component
         $this->keydown = str($this->keydown)->replace('y', 'JERERE');
     }
 
+    public function add10(string $prop): void
+    {
+        $this->$prop += 10;
+    }
+
     public function render(): View
     {
         return view('livewire.calculator');
