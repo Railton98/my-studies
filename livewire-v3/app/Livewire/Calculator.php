@@ -15,11 +15,19 @@ class Calculator extends Component
 
     public ?float $result = null;
 
+    public ?string $keydown = null;
+
     public function calculate(): void
     {
+        sleep(1);
         $tmp = "{$this->num1}{$this->operator}{$this->num2};";
 
         $this->result = eval('return '.$tmp);
+    }
+
+    public function notY(): void
+    {
+        $this->keydown = str($this->keydown)->replace('y', 'JERERE');
     }
 
     public function render(): View
