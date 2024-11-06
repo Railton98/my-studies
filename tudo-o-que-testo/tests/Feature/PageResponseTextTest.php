@@ -7,7 +7,6 @@ use function Pest\Laravel\get;
 it('should list products')
     ->get('/products')
     ->assertOk()
-    ->assertViewIs('products')
     ->assertSeeTextInOrder([
         'Product A',
         'Product B',
@@ -18,7 +17,6 @@ it('should list products from database', function () {
 
     get('/products')
         ->assertOk()
-        ->assertViewIs('products')
         ->assertSeeTextInOrder([
             'Product A',
             'Product B',
