@@ -1,1 +1,10 @@
 # Meus estudos sobre [Vue.js](https://vuejs.org/)
+
+- [Vue Pinia Tutorial](https://github.com/Railton98/my-studies/tree/vuejs/CodeWithTony_Vue_Pinia) by [Code With Tony](https://www.youtube.com/@codewithtonyofficial)
+- [Vue Router 4 Tutorial](https://github.com/Railton98/my-studies/tree/vuejs/CodeWithTony_Vue_Router_4) by [Code With Tony](https://www.youtube.com/@codewithtonyofficial)
+- [App Trello com Vue JS](https://github.com/Railton98/my-studies/tree/vuejs/LeoCoffeeTag_trello_vue) by [LeoCoffeeTag](https://www.youtube.com/@LeoCoffeeTag)
+- [Pinia Crash Course](https://github.com/Railton98/my-studies/tree/vuejs/NetNinja_Pinia_Crash_Course) by [Net Ninja](https://www.youtube.com/@NetNinja)
+- [Vue 3 e Composition API](https://github.com/Railton98/my-studies/tree/vuejs/PabloCodes_Vue3_Composition_API) by [Pablo Codes](https://www.youtube.com/@PabloCodess)
+- [Pinia Fundamentals](https://github.com/Railton98/my-studies/tree/vuejs/VueMastery_Pinia_Fundamentals) by [Vue Mastery](https://www.vuemastery.com/)
+- [Laravel Backends for Vue.js 3](https://github.com/Railton98/my-studies/tree/vuejs/VueSchool_Laravel_Backends_for_Vuejs_3) by [Vue School](https://vueschool.io/)
+- [Vue Router 4 for Everyone](https://github.com/Railton98/my-studies/tree/vuejs/VueSchool_Vue_Router_4_For_Everyone) by [Vue School](https://vueschool.io/)
