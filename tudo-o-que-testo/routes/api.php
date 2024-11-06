@@ -3,6 +3,7 @@
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,28 @@ Route::get('/products', function () {
         ['title' => 'Product B'],
     ], $products->toArray());
 });
+
+Route::post('/products', function (Request $request) {
+    $product = Product::query()
+        ->create($request->only('title'));
+
+    return response()->json($product, Response::HTTP_CREATED);
+})->name('products.store');
+
+Route::put('/products/{product}', function (Product $product, Request $request) {
+    $product->update($request->only('title'));
+
+    return response()->json($product, Response::HTTP_OK);
+})->name('products.update');
+
+Route::delete('/products/{product}', function (Product $product) {
+    $product->forceDelete();
+
+    return response()->noContent();
+})->name('products.destroy');
+
+Route::delete('/products/{product}/soft-delete', function (Product $product) {
+    $product->delete();
+
+    return response()->noContent();
+})->name('products.soft-delete');
