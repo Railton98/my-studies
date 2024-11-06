@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,5 @@ Route::get('/forbidden', function () {
 
     return ['route' => 'forbidden'];
 });
+
+Route::get('/products', fn () => view('products', ['products' => Product::all()]));
