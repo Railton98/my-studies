@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -13,6 +14,8 @@ class ProductFactory extends Factory
     {
         return [
             'title' => fake()->word,
+            'owner_id' => User::factory(),
+            'code' => fake()->word,
         ];
     }
 }

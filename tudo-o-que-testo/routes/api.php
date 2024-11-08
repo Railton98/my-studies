@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 /*
@@ -33,10 +35,11 @@ Route::get('/products', function () {
 Route::post('/products', function (Request $request) {
     $request->validate([
         'title' => ['required', 'max:255'],
+        'owner_id' => ['required', Rule::exists(User::class, 'id')],
     ]);
 
     $product = Product::query()
-        ->create($request->only('title'));
+        ->create($request->only(['title', 'owner_id']));
 
     return response()->json($product, Response::HTTP_CREATED);
 })->name('products.store');
