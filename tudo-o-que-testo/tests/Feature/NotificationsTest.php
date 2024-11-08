@@ -4,16 +4,15 @@ use App\Models\User;
 use App\Notifications\NewProductNotification;
 use Illuminate\Support\Facades\Notification;
 
-use function Pest\Laravel\postJson;
+use function Pest\Laravel\actingAs;
 
 it('should sends a notification about a new product', function () {
     Notification::fake();
 
     $user = User::factory()->create();
 
-    postJson(route('products.store'), [
+    actingAs($user)->postJson(route('products.store'), [
         'title' => 'Test product',
-        'owner_id' => $user->id,
     ])->assertCreated();
 
     Notification::assertCount(1);

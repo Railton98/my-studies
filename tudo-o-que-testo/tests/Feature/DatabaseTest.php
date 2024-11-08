@@ -3,12 +3,12 @@
 use App\Models\Product;
 use App\Models\User;
 
+use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\assertSoftDeleted;
 use function Pest\Laravel\deleteJson;
-use function Pest\Laravel\postJson;
 use function Pest\Laravel\putJson;
 use function PHPUnit\Framework\assertSame;
 use function PHPUnit\Framework\assertTrue;
@@ -16,9 +16,9 @@ use function PHPUnit\Framework\assertTrue;
 it('should be able to create a product', function () {
     $user = User::factory()->create();
 
-    postJson(
+    actingAs($user)->postJson(
         route('products.store'),
-        ['title' => 'Test Product', 'owner_id' => $user->id]
+        ['title' => 'Test Product']
     )->assertCreated();
 
     assertTrue(Product::query()->where(['title' => 'Test Product'])->exists());

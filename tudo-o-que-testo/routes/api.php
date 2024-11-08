@@ -1,12 +1,10 @@
 <?php
 
+use App\Actions\CreateProductAction;
 use App\Jobs\ImportProductsJob;
 use App\Models\Product;
-use App\Models\User;
-use App\Notifications\NewProductNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 /*
@@ -37,16 +35,12 @@ Route::get('/products', function () {
 Route::post('/products', function (Request $request) {
     $request->validate([
         'title' => ['required', 'max:255'],
-        'owner_id' => ['required', Rule::exists(User::class, 'id')],
     ]);
 
-    $product = Product::query()
-        ->create($request->only(['title', 'owner_id']));
+    app(CreateProductAction::class)
+        ->handle($request->get('title'), $request->user());
 
-    $user = User::query()->findOrFail($request->owner_id);
-    $user->notify(new NewProductNotification);
-
-    return response()->json($product, Response::HTTP_CREATED);
+    return response()->json(status: Response::HTTP_CREATED);
 })->name('products.store');
 
 Route::put('/products/{product}', function (Product $product, Request $request) {
