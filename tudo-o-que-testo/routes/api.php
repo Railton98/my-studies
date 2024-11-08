@@ -32,13 +32,12 @@ Route::get('/products', function () {
     ], $products->toArray());
 });
 
-Route::post('/products', function (Request $request) {
+Route::post('/products', function (Request $request, CreateProductAction $action) {
     $request->validate([
         'title' => ['required', 'max:255'],
     ]);
 
-    app(CreateProductAction::class)
-        ->handle($request->get('title'), $request->user());
+    $action->handle($request->get('title'), $request->user());
 
     return response()->json(status: Response::HTTP_CREATED);
 })->name('products.store');
@@ -61,7 +60,7 @@ Route::delete('/products/{product}/soft-delete', function (Product $product) {
     return response()->noContent();
 })->name('products.soft-delete');
 
-Route::post('/import-products', function () {
+Route::post('/import-products-via-job', function () {
     $data = request()->get('data');
 
     ImportProductsJob::dispatch($data, auth()->id());
