@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,3 +62,9 @@ Route::delete('/products/{product}/soft-delete', function (Product $product) {
 
     return response()->noContent();
 })->name('products.soft-delete');
+
+Route::post('/import-products', function () {
+    $data = request()->get('data');
+
+    ImportProductsJob::dispatch($data, auth()->id());
+})->name('products.import');
