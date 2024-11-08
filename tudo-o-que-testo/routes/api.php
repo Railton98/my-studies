@@ -3,6 +3,7 @@
 use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
+use App\Notifications\NewProductNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
@@ -41,6 +42,9 @@ Route::post('/products', function (Request $request) {
 
     $product = Product::query()
         ->create($request->only(['title', 'owner_id']));
+
+    $user = User::query()->findOrFail($request->owner_id);
+    $user->notify(new NewProductNotification);
 
     return response()->json($product, Response::HTTP_CREATED);
 })->name('products.store');
