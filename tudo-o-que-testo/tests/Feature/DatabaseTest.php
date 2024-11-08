@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Product;
-
 use App\Models\User;
+
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
