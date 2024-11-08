@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\JeremiasMiddleware;
 use App\Mail\WelcomeMail;
 use App\Models\Product;
 use App\Models\User;
@@ -31,3 +32,7 @@ Route::get('/products', fn () => view('products', ['products' => Product::all()]
 Route::post('/sending-email/{user}', function (User $user) {
     Mail::to($user)->send(new WelcomeMail($user));
 })->name('sending-mail');
+
+Route::get('secure-route', fn () => ['oi'])
+    ->middleware(JeremiasMiddleware::class)
+    ->name('secure-route');

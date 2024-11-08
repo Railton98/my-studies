@@ -19,7 +19,7 @@ it('should be able to create a product via command', function () {
     assertDatabaseCount(Product::class, 1);
     assertDatabaseHas(Product::class, [
         'title' => 'product 1',
-        'owner_id' => $user->id
+        'owner_id' => $user->id,
     ]);
 });
 

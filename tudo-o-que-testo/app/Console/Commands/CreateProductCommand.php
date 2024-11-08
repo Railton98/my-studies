@@ -29,11 +29,11 @@ class CreateProductCommand extends Command
         $title = $this->argument('title');
         $user = $this->argument('user');
 
-        if (!$title) {
+        if (! $title) {
             $title = $this->components->ask('Please, provide a valid title for the product');
         }
 
-        if (!$user) {
+        if (! $user) {
             $user = $this->components->ask('Please, provide a valid user id');
         }
 
