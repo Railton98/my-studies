@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Product;
+use App\Actions\CreateProductAction;
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CreateProductCommand extends Command
 {
@@ -37,10 +40,13 @@ class CreateProductCommand extends Command
             $user = $this->components->ask('Please, provide a valid user id');
         }
 
-        Product::query()->create([
-            'title' => $title,
-            'owner_id' => $user,
-        ]);
+        Validator::make(['title' => $title, 'user' => $user], [
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'user' => ['required', Rule::exists(User::class, 'id')],
+        ])->validate();
+
+        app(CreateProductAction::class)
+            ->handle($title, User::findOrFail($user));
 
         $this->components->info('Product created!!');
     }
