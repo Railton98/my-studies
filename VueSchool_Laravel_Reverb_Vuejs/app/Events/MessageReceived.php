@@ -14,14 +14,16 @@ class MessageReceived implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public string $who;
+
     /**
      * Create a new event instance.
      */
     public function __construct(
         public string $message,
-        public string $id
+        public string $id,
     ) {
-        //
+        $this->who = auth()->user()->name;
     }
 
     /**
@@ -32,7 +34,7 @@ class MessageReceived implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('messages'),
+            new PrivateChannel('messages'),
         ];
     }
 }
