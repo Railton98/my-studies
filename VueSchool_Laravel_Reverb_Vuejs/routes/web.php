@@ -30,7 +30,9 @@ Route::post('/messages', function () {
 });
 
 Route::get('/visit-count', function () {
-    return Inertia::render('VisitCount');
+    return Inertia::render('VisitCount', [
+        'user' => auth()->user(),
+    ]);
 });
 
 Route::get('/dashboard', function () {
@@ -43,4 +45,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
