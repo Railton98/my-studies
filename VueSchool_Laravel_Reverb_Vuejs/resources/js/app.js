@@ -25,3 +25,7 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+Echo.channel('hello-world').listen('HelloWorld', (e) => {
+    console.log(e);
+});
