@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\HelloWorld;
+use App\Events\MessageReceived;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,16 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
+});
+
+Route::post('/messages', function () {
+    $payload = request()->validate([
+        'id' => 'required',
+        'message' => 'required'
+    ]);
+    event(new MessageReceived($payload['message'], $payload['id']));
+
+    return response()->json(['message' => 'Message received!']);
 });
 
 Route::get('/visit-count', function () {
