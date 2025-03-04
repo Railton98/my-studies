@@ -13,6 +13,28 @@ class Container
         $this->bindings[$key] = $value;
     }
 
+    public function resolveParameters($method)
+    {
+        return array_map(
+            fn($param) => $this->get($param->getType()->getName()),
+            $method->getParameters()
+        );
+    }
+
+    private function getInstance(string $key)
+    {
+        $reflection = new \ReflectionClass($key);
+        $constructor = $reflection->getConstructor();
+
+        if (!$constructor) {
+            return new $key;
+        }
+
+        return $reflection->newInstanceArgs(
+            $this->resolveParameters($constructor)
+        );
+    }
+
     public function get(string $key)
     {
         if (isset($this->bindings[$key])) {
@@ -23,6 +45,10 @@ class Container
             }
 
             return $bind;
+        }
+
+        if (class_exists($key)) {
+            return $this->getInstance($key);
         }
     }
 }

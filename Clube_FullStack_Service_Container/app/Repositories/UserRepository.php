@@ -10,6 +10,6 @@ class UserRepository implements UserRepositoryInterface
 {
 	public function find($id)
 	{
-        dd('find user with id ' . $id);
+        return 'find user with id ' . $id;
 	}
 }

@@ -15,5 +15,5 @@ $container->bind(UserRepositoryInterface::class, fn() => new UserRepository);
 
 Application::resolve($container);
 
-$router = new Router;
+$router = new Router($container);
 $router->create($routes);
