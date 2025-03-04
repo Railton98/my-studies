@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Core;
 
+use ReflectionMethod;
+
 class Router
 {
     private string $controller;
     private string $method;
 
     public function __construct(
-        private Container $container
+        private ContainerInterface $container
     ) {}
 
     public function create(array $routes): void
@@ -29,10 +31,13 @@ class Router
     {
         if (class_exists($this->controller)) {
             $controller = $this->container->get($this->controller);
-            $method = new \ReflectionMethod($controller, $this->method);
+
             if (method_exists($controller, $this->method)) {
                 return $controller->{$this->method}(
-                    ...$this->container->resolveParameters($method)
+                    ...$this->container->resolveContainer->parameters(
+                        new ReflectionMethod($controller, $this->method),
+                        $this->container
+                    )
                 );
             }
         }

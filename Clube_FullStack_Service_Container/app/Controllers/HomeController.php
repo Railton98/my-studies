@@ -11,17 +11,16 @@ use App\Library\Newsletter;
 class HomeController
 {
     public function __construct(
+        private UserRepositoryInterface $userRepository,
         private Auth $auth
     ) {
         //
     }
 
-    public function index(
-        UserRepositoryInterface $userRepository,
-        Newsletter $newsletter
-    ) {
+    public function index(Newsletter $newsletter)
+    {
         dd(
-            $userRepository->find(123),
+            $this->userRepository->find(123),
             $this->auth->auth(),
             $newsletter->send()
         );
