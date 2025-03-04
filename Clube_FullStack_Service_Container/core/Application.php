@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core;
 
+use DI\Container;
+
 class Application
 {
     private static Container $container;
