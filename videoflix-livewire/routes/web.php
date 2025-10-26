@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Media\IndexContent;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -10,6 +11,8 @@ use Laravel\Fortify\Features;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/media/contents', IndexContent::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
