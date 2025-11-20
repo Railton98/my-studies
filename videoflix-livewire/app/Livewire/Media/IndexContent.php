@@ -14,7 +14,7 @@ class IndexContent extends Component
     public function render(): View
     {
         return view('livewire.media.index-content', [
-            'contents' => Content::query()->paginate(),
+            'contents' => Content::query()->latest('id')->paginate(),
         ]);
     }
 }

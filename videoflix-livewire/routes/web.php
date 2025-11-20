@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Media\CreateContent;
+use App\Livewire\Media\EditContent;
 use App\Livewire\Media\IndexContent;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -12,7 +14,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/media/contents', IndexContent::class);
+Route::prefix('media')
+    ->name('media.contents.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/contents', IndexContent::class)->name('index');
+        Route::get('/contents/create', CreateContent::class)->name('create');
+        Route::get('/contents/{content}/edit', EditContent::class)->name('edit');
+    });
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

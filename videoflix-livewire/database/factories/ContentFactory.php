@@ -24,7 +24,18 @@ class ContentFactory extends Factory
             'slug' => str($title)->slug(),
             'description' => fake()->sentence,
             'body' => fake()->paragraphs(3, true),
+            'type' => 'MOVIE',
         ];
+    }
+
+    /**
+     * Indicate that the content is a series.
+     */
+    public function series(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => 'SERIES',
+        ]);
     }
 
     /**
@@ -32,7 +43,7 @@ class ContentFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'status' => 'ACTIVE',
         ]);
     }
@@ -42,7 +53,7 @@ class ContentFactory extends Factory
      */
     public function deactive(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'status' => 'DEACTIVE',
         ]);
     }

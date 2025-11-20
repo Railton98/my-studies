@@ -18,5 +18,6 @@ class Content extends Model
         'body',
         'cover',
         'status',
+        'type',
     ];
 }

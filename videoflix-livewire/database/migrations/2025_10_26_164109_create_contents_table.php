@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('cover')->nullable();
             $table->string('status', 20)->default('DRAFT');
+            $table->string('type', 30);
 
             $table->timestamps();
         });
