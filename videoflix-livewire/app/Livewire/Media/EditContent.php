@@ -6,9 +6,12 @@ use App\Livewire\Forms\ContentForm;
 use App\Models\Content;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditContent extends Component
 {
+    use WithFileUploads;
+
     public string $labelButton = 'Atualizar Conteúdo';
 
     public int $contentId;

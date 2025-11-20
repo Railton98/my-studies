@@ -1,5 +1,12 @@
 <div>
-    <h2 class="mb-10 text-2xl font-bold">Conteúdos</h2>
+    <div class="flex items-center justify-between w-full mb-10">
+        <h2 class="mb-10 text-2xl font-bold">Conteúdos</h2>
+
+        <a wire:navigate href="{{ route('media.contents.create') }}"
+            class="px-4 py-2 font-bold text-white transition duration-300 ease-in-out bg-green-700 border-green-900 rounded hover:bg-green-900">
+            CRIAR CONTEÚDO
+        </a>
+    </div>
 
     <table class="w-full">
         <thead>
@@ -19,9 +26,15 @@
                     <td class="px-6 py-4 text-xl text-left">{{ $content->status }}</td>
                     <td class="px-6 py-4 text-xl text-left">{{ $content->created_at->format('d/m/Y h:i') }}</td>
                     <td class="flex gap-4 px-6 py-4 text-xl text-left">
-
-                        <livewire:media.remove-content :content="$content->id" :key="$content->id"
-                            @content_removed_{{ $content->id }}="$refresh" />
+                        <a wire:navigate href="{{ route('media.contents.edit', $content->id) }}"
+                            class="px-4 py-2 font-bold text-white transition duration-300 ease-in-out bg-blue-700 border-blue-900 rounded hover:bg-blue-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <livewire:media.remove-content :contentId="$content->id" :key="$content->id" />
                     </td>
                 </tr>
             @empty

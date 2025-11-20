@@ -5,9 +5,11 @@ namespace App\Livewire\Media;
 use App\Livewire\Forms\ContentForm;
 use Illuminate\View\View;
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 class CreateContent extends Component
 {
+    use WithFileUploads;
+
     public string $labelButton = 'Criar Conteúdo';
 
     public ContentForm $form;

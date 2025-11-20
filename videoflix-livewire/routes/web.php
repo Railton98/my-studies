@@ -3,6 +3,7 @@
 use App\Livewire\Media\CreateContent;
 use App\Livewire\Media\EditContent;
 use App\Livewire\Media\IndexContent;
+use App\Livewire\Media\VideoUpload;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -21,6 +22,7 @@ Route::prefix('media')
         Route::get('/contents', IndexContent::class)->name('index');
         Route::get('/contents/create', CreateContent::class)->name('create');
         Route::get('/contents/{content}/edit', EditContent::class)->name('edit');
+        Route::get('/contents/{content}/videos/upload', VideoUpload::class)->name('videos.upload');
     });
 
 Route::view('dashboard', 'dashboard')
@@ -46,4 +48,4 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

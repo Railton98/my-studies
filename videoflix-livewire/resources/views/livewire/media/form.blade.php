@@ -1,4 +1,12 @@
 <div>
+    @if (request()->routeIs('media.contents.edit'))
+        <div class="flex items-center justify-end w-full mb-10">
+            <a wire:navigate href="{{ route('media.contents.videos.upload', $contentId) }}"
+                class="px-4 py-2 font-bold text-white transition duration-300 ease-in-out bg-green-700 border-green-900 rounded hover:bg-green-900">
+                UPLOAD VÍDEOS
+            </a>
+        </div>
+    @endif
     <form wire:submit="save">
         <div class="w-full mb-6">
             <label for="title" class="block mb-2">Titulo</label>
@@ -75,6 +83,40 @@
                     {{ $message }}
                 </div>
             @enderror
+        </div>
+
+
+        <div class="w-full mb-6" x-data="{
+            dropping: false,
+            handleCover(event) {
+                $wire.upload('form.cover', event.dataTransfer.files[0])
+            }
+        }">
+            <label for="cover" x-on:dragleave.prevent="dropping = false" x-on:dragover.prevent="dropping = true"
+                x-on:drop="dropping = false" x-on:drop.prevent="handleCover($event)"
+                x-bind:class="{
+                    'border-gray-300': !dropping,
+                    'border-gray-600': dropping
+                }"
+                class="flex items-center justify-center p-10 font-bold border-4 border-dashed rounded cursor-pointer dark:text-white bg-zinc-800">
+                Clique ou arraste sua imagem para capa do Conteúdo...
+            </label>
+
+            <input type="file" id="cover" wire:model="form.cover" class="sr-only">
+
+            @error('form.cover')
+                <div class="p-4 my-4 text-red-900 bg-red-300 border border-red-900 rounded">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            @if (!$form->cover && $form->coverReal)
+                <img src="{{ asset('storage/' . $form->coverReal) }}" alt="">
+            @endif
+
+            @if ($form->cover)
+                <img src="{{ $form->cover->temporaryUrl() }}" alt="">
+            @endif
         </div>
 
         <button
