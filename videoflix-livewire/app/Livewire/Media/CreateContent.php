@@ -6,6 +6,7 @@ use App\Livewire\Forms\ContentForm;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 class CreateContent extends Component
 {
     use WithFileUploads;

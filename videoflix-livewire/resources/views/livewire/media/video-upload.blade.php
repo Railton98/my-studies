@@ -25,7 +25,7 @@
                     'border-gray-300': !dropping,
                     'border-gray-600': dropping
                 }"
-                class="flex items-center justify-center p-10 font-bold border-4 border-dashed rounded dark:text-white bg-zinc-800">
+                class="flex items-center justify-center p-10 font-bold border-4 border-dashed rounded cursor-pointer dark:text-white bg-zinc-800">
                 Clique ou arraste seus vídeos para realizar o upload...
             </label>
 
@@ -37,7 +37,7 @@
             </div>
             <!-- Progress Bar -->
 
-            @error('form.cover')
+            @error('videos.*')
                 <div class="p-4 my-4 text-red-900 bg-red-300 border border-red-900 rounded">
                     {{ $message }}
                 </div>
