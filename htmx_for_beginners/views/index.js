@@ -19,7 +19,15 @@ const createHomePageTemplate = () => /*html*/ `
                 <form>
                     <input type="text" name="title" placeholder="Title"/>
                     <input type="text" name="author" placeholder="Author"/>
-                    <button hx-post="books" hx-target=".book-list ul" hx-swap="beforeend">Add Book</button>
+                    <button
+                        hx-on:click="console.log('new book added', event)"
+                        hx-on::after-request="document.querySelector('form').reset()"
+                        hx-post="books"
+                        hx-target=".book-list ul"
+                        hx-swap="beforeend"
+                    >
+                        Add Book
+                    </button>
                 </form>
             </div>
         </main>
