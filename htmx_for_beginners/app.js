@@ -1,4 +1,5 @@
 import express from "express";
+import BOOKS_DATA from "./data/data.js";
 import createHomePageTemplate from "./views/index.js";
 import createListTemplate from "./views/list.js";
 
@@ -16,6 +17,15 @@ app.get("/", (req, res) => {
 
 app.get("/books", (req, res) => {
   res.send(createListTemplate());
+});
+
+app.post("/books", (req, res) => {
+  const { title, author } = req.body;
+  const id = Math.random().toString();
+
+  BOOKS_DATA.push({ id, title, author });
+
+  res.send(`<li>${title}, ${author}</li>`);
 });
 
 // listen to port
