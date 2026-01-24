@@ -76,6 +76,10 @@ app.post("/books/search", (req, res) => {
 });
 
 // listen to port
-app.listen(3000, () => {
-  console.log("App listening on port 3000");
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(3000, () => {
+    console.log("App listening on port 3000");
+  });
+}
+
+export default app;
