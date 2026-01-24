@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/books", (req, res) => {
-  res.send(createListTemplate());
+  res.send(createListTemplate(BOOKS_DATA));
 });
 
 app.post("/books", (req, res) => {
@@ -63,6 +63,16 @@ app.delete("/books/:id", (req, res) => {
   BOOKS_DATA.splice(index, 1);
 
   res.send();
+});
+
+app.post("/books/search", (req, res) => {
+  const text = req.body.search.toLowerCase();
+
+  const filteredBooks = BOOKS_DATA.filter((book) =>
+    book.title.toLowerCase().includes(text),
+  );
+
+  res.send(createListTemplate(filteredBooks));
 });
 
 // listen to port
