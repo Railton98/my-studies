@@ -1,6 +1,7 @@
 import express from "express";
 import BOOKS_DATA from "./data/data.js";
 import createBookTemplate from "./views/book.js";
+import createEditFormTemplate from "./views/edit.js";
 import createHomePageTemplate from "./views/index.js";
 import createListTemplate from "./views/list.js";
 
@@ -34,6 +35,13 @@ app.get("/books/:id", (req, res) => {
   const book = BOOKS_DATA.find((b) => b.id === id);
 
   res.send(createBookTemplate(book));
+});
+
+app.get("/books/edit/:id", (req, res) => {
+  const { id } = req.params;
+  const book = BOOKS_DATA.find((b) => b.id === id);
+
+  res.send(createEditFormTemplate(book));
 });
 
 app.delete("/books/:id", (req, res) => {
