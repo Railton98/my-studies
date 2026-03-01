@@ -1,11 +1,3 @@
-# O que estou estudando atualmente?
-> Este repositório contém exemplos de projetos, desenvolvidos com as tecnologias que estou estudando atualmente.
+# Meus estudos sobre AI e ferramentas relacionadas
 
-- [HTMX](https://github.com/Railton98/my-studies/tree/htmx)
-- [Inertia.js](https://github.com/Railton98/my-studies/tree/inertiajs)
-- [Laravel](https://github.com/Railton98/my-studies/tree/laravel)
-- [Livewire](https://github.com/Railton98/my-studies/tree/livewire)
-- [NestJS](https://github.com/Railton98/my-studies/tree/nestjs)
-- [PHP](https://github.com/Railton98/my-studies/tree/php)
-- [Symfony](https://github.com/Railton98/my-studies/tree/symfony)
-- [Vue.js](https://github.com/Railton98/my-studies/tree/vuejs)
+- [GitHub Spec Kit Tutorials](https://github.com/Railton98/my-studies/tree/ai/doit_speckit) by [Net  Ninja](https://www.youtube.com/@NetNinja)
