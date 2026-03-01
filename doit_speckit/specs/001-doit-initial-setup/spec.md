@@ -5,6 +5,15 @@
 **Status**: Draft  
 **Input**: User description: "initial page setup - this application should be a goal tracking web app called 'doit'. There should be two columns - a left one where current goals are shown, along with how many days left the user has to achieve the goal, and right one where completed goals are. Each goal can be 'checked' using a checkbox, and then either moved to the completed column or permanently deleted. To add new goals, a user can click on a button to open a new goal form in a modal (title and end date fields). Goals reaching their end date (within 3 days) are highlighted. Let's use a modern light theme with fun pastel colours."
 
+## Clarifications
+
+### Session 2026-03-01
+
+- Q: For FR-009 (goal persistence), which storage method should the app use? → A: Browser Storage (localStorage/IndexedDB only)—single-user, offline-capable, no backend required
+- Q: Should the app prevent users from creating goal duplicates (same title)? → A: Yes, prevent duplicates—unique title/date combination validation required
+- Q: Can users edit goal title or end date after creation, or must they delete and recreate? → A: Delete and recreate only—no inline editing feature in scope for this MVP
+- Q: Which pastel color palette direction should the app use? → A: Classic Pastels (soft pinks, mint green, light purple, pale yellow) for modern, fun aesthetic
+
 ## User Scenarios & Manual Verification *(mandatory)*
 
 ### User Story 1 - View Dashboard with Goal Columns (Priority: P1)
@@ -46,6 +55,7 @@ User clicks a button to open a form where they can create a new goal by entering
 2. **Given** modal is open and empty, **When** user enters title "Learn TypeScript" and date "2026-04-01", **Then** they can click "Create" and the goal appears in the current goals column
 3. **Given** user enters an end date in the past, **When** they attempt to submit, **Then** the form shows a validation error and does not create the goal
 4. **Given** the modal is open, **When** user clicks outside the modal or a close button, **Then** the modal closes without creating a goal
+5. **Given** user has a goal with title "Learn React" and end date "2026-04-01", **When** they try to create another goal with the same title and date, **Then** the form shows a validation error ("Goal already exists") and does not create the duplicate
 
 ---
 
@@ -66,8 +76,7 @@ User can check a goal checkbox to mark it as complete (moving it to the complete
 1. **Given** a goal exists in the current column, **When** user clicks the checkbox, **Then** the goal is moved to the completed goals column
 2. **Given** a goal exists in completed column, **When** user clicks a delete button on that goal, **Then** a confirmation prompt appears
 3. **Given** confirmation prompt is shown, **When** user confirms deletion, **Then** the goal is permanently removed from the app
-4. **Given** a goal is in current column, **When** user clicks the delete button directly, **Then** the goal is removed from the current column
-
+4. **Given** a goal is in current column, **When** user clicks the delete button directly, **Then** the goal is removed from the current column6. **Given** user wants to change a goal's title or date, **When** they view an existing goal, **Then** the only option is to delete it and create a new one (no inline edit feature)
 ---
 
 ### User Story 4 - Visual Urgency Highlighting for Deadlines (Priority: P3)
@@ -107,17 +116,34 @@ Goals that have a deadline within 3 days (including today) are visually highligh
 - **FR-002**: System MUST display each current goal with its title and days remaining calculated from today to end date
 - **FR-003**: System MUST provide an "Add Goal" button that opens a modal form with "Title" (text input) and "End Date" (date picker) fields
 - **FR-004**: System MUST create a new goal when user submits the modal form with valid title and future/today end date
-- **FR-005**: System MUST validate that goal title is not empty and end date is not in the past; show error message if invalid
+- **FR-005**: System MUST validate that goal title is not empty, end date is not in the past, and no other goal exists with the same title and end date combination; show appropriate error message if any validation fails
 - **FR-006**: System MUST provide a checkbox or button on each current goal to mark it as complete and move it to the completed column
 - **FR-007**: System MUST provide a delete button on each goal (current or completed) that removes it permanently (with confirmation for non-completed goals)
 - **FR-008**: System MUST apply distinct visual highlighting to goals with end date within 3 days from today (urgency indicator)
-- **FR-009**: System MUST persist goals in browser storage or database (user choice—document assumption) so goals survive page reload
+- **FR-009**: System MUST persist goals in browser localStorage/IndexedDB so goals survive page reload (single-user, offline-capable, no backend or cloud sync required)
 - **FR-010**: System MUST display empty state messaging when columns have no goals
 
 ### Key Entities
 
 - **Goal**: Represents a user objective with: title (string), end_date (date), created_date (date), status (enum: "current" or "completed"), days_remaining (calculated, not stored)
 - **UIState**: Current state of the modal (open/closed), selected goal for deletion confirmation, any error messages from form validation
+
+## Design Specifications
+
+### Color Palette (Classic Pastels)
+
+**Primary Colors** (per clarification Q4):
+- **Pastel Pink** (#F8C5D4 or similar): Background for completed goals, success states
+- **Pastel Mint** (#C0F0E8 or similar): Emphasis/interactive elements (buttons, borders)
+- **Pastel Purple** (#E8D4F1 or similar): Card backgrounds, secondary information
+- **Pastel Yellow** (#FFF4D4 or similar): Warning/urgency highlighting for goals within 3-day deadline
+- **White/Off-White** (#FAFAF8): Main background, column backgrounds
+
+**Usage Guidelines**:
+- Urgent goals (≤3 days): Pastel yellow background with dark text
+- Completed goals: Pastel pink subtle background
+- Active/hoverable elements: Pastel mint accents
+- Empty state cards: Pastel purple text/light background
 
 ## Success Criteria *(mandatory)*
 
@@ -129,8 +155,9 @@ Goals that have a deadline within 3 days (including today) are visually highligh
 - **SC-004**: 90% of goals within 3-day deadline are visually distinguishable from other goals on first glance
 - **SC-005**: Dashboard remains responsive and usable on mobile (375px width), tablet (768px), and desktop (1920px+) screens
 - **SC-006**: All interactive elements (buttons, checkboxes, date picker) are at least 44px in touch-target size on mobile
-- **SC-007**: Pages load and display initial state in under 2 seconds on standard connections
+- **SC-007**: Pages load and display initial state in under 2 seconds on standard connections (including localStorage retrieval)
 - **SC-008**: Users can navigate and use the app in light mode with no contrast issues; WCAG AA level contrast minimum
+- **SC-009**: Users cannot create duplicate goals (same title + end date); form validation prevents submission with clear error message
 
 ---
 
