@@ -1,6 +1,7 @@
 # O que estou estudando atualmente?
 > Este repositório contém exemplos de projetos, desenvolvidos com as tecnologias que estou estudando atualmente.
 
+- [AI & Tools](https://github.com/Railton98/my-studies/tree/ai)
 - [HTMX](https://github.com/Railton98/my-studies/tree/htmx)
 - [Inertia.js](https://github.com/Railton98/my-studies/tree/inertiajs)
 - [Laravel](https://github.com/Railton98/my-studies/tree/laravel)
