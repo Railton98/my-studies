@@ -29,11 +29,11 @@ Tasks are grouped by **user story** to enable independent implementation and man
 
 **Purpose**: Project initialization and environment configuration
 
-- [ ] T001 Install dependencies: `npm install date-fns` in repository root
-- [ ] T002 Install shadcn/ui components: `npx shadcn-ui@latest add button input card dialog alert-dialog` in app directory
-- [ ] T003 Verify Tailwind CSS 4 configuration: check `postcss.config.mjs` includes `@tailwindcss/postcss`
-- [ ] T004 Create project directory structure: `components/dashboard/`, `components/forms/`, `hooks/`, `lib/`, `types/` directories
-- [ ] T005 [P] Create TypeScript types file at `types/goal.ts` with Goal interface and GoalsState interface
+- [x] T001 Install dependencies: `npm install date-fns` in repository root
+- [x] T002 Install shadcn/ui components: `npx shadcn-ui@latest add button input card dialog alert-dialog` in app directory
+- [x] T003 Verify Tailwind CSS 4 configuration: check `postcss.config.mjs` includes `@tailwindcss/postcss`
+- [x] T004 Create project directory structure: `components/dashboard/`, `components/forms/`, `hooks/`, `lib/`, `types/` directories
+- [x] T005 [P] Create TypeScript types file at `types/goal.ts` with Goal interface and GoalsState interface
 
 ---
 
@@ -43,12 +43,12 @@ Tasks are grouped by **user story** to enable independent implementation and man
 
 These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
-- [ ] T006 [P] Create `lib/dates.ts`: Implement `getDaysRemaining()`, `isUrgent()`, `formatDaysRemaining()`, `formatEndDate()` functions using date-fns
-- [ ] T007 [P] Create `lib/storage.ts`: Implement `loadGoals()`, `saveGoals()`, `clearGoals()` localStorage wrapper functions
-- [ ] T008 [P] Create `lib/goals.ts`: Implement `createGoal()`, `isDuplicateGoal()`, `isValidEndDate()`, `filterGoalsByStatus()` business logic functions
-- [ ] T009 [P] Create `hooks/usePersistentGoals.ts`: Implement custom hook with localStorage read on mount and save on change (handle hydration safely)
-- [ ] T010 [P] Create `hooks/useGoals.ts`: Implement custom hook with methods `addGoal()`, `completeGoal()`, `deleteGoal()`, and validation
-- [ ] T011 Create `app/globals.css`: Add Tailwind `@theme` directive with pastel colors (pink #F8C5D4, mint #C0F0E8, purple #E8D4F1, yellow #FFF4D4)
+- [x] T006 [P] Create `lib/dates.ts`: Implement `getDaysRemaining()`, `isUrgent()`, `formatDaysRemaining()`, `formatEndDate()` functions using date-fns
+- [x] T007 [P] Create `lib/storage.ts`: Implement `loadGoals()`, `saveGoals()`, `clearGoals()` localStorage wrapper functions
+- [x] T008 [P] Create `lib/goals.ts`: Implement `createGoal()`, `isDuplicateGoal()`, `isValidEndDate()`, `filterGoalsByStatus()` business logic functions
+- [x] T009 [P] Create `hooks/usePersistentGoals.ts`: Implement custom hook with localStorage read on mount and save on change (handle hydration safely)
+- [x] T010 [P] Create `hooks/useGoals.ts`: Implement custom hook with methods `addGoal()`, `completeGoal()`, `deleteGoal()`, and validation
+- [x] T011 Create `app/globals.css`: Add Tailwind `@theme` directive with pastel colors (pink #F8C5D4, mint #C0F0E8, purple #E8D4F1, yellow #FFF4D4)
 
 ---
 
@@ -64,14 +64,14 @@ These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
 **Tasks**:
 
-- [ ] T012 [US1] Create `components/dashboard/GoalCard.tsx`: Display individual goal with title, days remaining text, checkbox/delete button, urgent highlighting styling
-- [ ] T013 [US1] Create `components/dashboard/GoalColumn.tsx`: Display column header with GoalCard list, render empty state if no goals
-- [ ] T014 [US1] Create `components/dashboard/DashboardLayout.tsx`: Container component with two GoalColumn instances, manage all app state (goals, modals, errors)
-- [ ] T015 [US1] Create `app/page.tsx`: Import and render DashboardLayout component, initialize usePersistentGoals hook on mount
-- [ ] T016 [US1] Implement localStorage loading: DashboardLayout reads goals from `doit_goals` key on first render, displays loading state while loading
-- [ ] T017 [US1] Implement responsive layout: Use Tailwind breakpoints (md:flex-row on tablet+) to display columns side-by-side on desktop, stacked on mobile
-- [ ] T018 [US1] Implement empty state messaging: Show "No goals yet. Click 'Add Goal' to get started!" when columns are empty
-- [ ] T019 [US1] Implement days remaining display: Calculate and format using `formatDaysRemaining()` from lib/dates.ts (e.g., "3 days left", "Today", "Tomorrow", "Overdue")
+- [x] T012 [US1] Create `components/dashboard/GoalCard.tsx`: Display individual goal with title, days remaining text, checkbox/delete button, urgent highlighting styling
+- [x] T013 [US1] Create `components/dashboard/GoalColumn.tsx`: Display column header with GoalCard list, render empty state if no goals
+- [x] T014 [US1] Create `components/dashboard/DashboardLayout.tsx`: Container component with two GoalColumn instances, manage all app state (goals, modals, errors)
+- [x] T015 [US1] Create `app/page.tsx`: Import and render DashboardLayout component, initialize usePersistentGoals hook on mount
+- [x] T016 [US1] Implement localStorage loading: DashboardLayout reads goals from `doit_goals` key on first render, displays loading state while loading
+- [x] T017 [US1] Implement responsive layout: Use Tailwind breakpoints (md:flex-row on tablet+) to display columns side-by-side on desktop, stacked on mobile
+- [x] T018 [US1] Implement empty state messaging: Show "No goals yet. Click 'Add Goal' to get started!" when columns are empty
+- [x] T019 [US1] Implement days remaining display: Calculate and format using `formatDaysRemaining()` from lib/dates.ts (e.g., "3 days left", "Today", "Tomorrow", "Overdue")
 
 **Parallel Opportunities**:
 - T012-T013 can be implemented in parallel (independent components)
@@ -95,14 +95,14 @@ These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
 **Tasks**:
 
-- [ ] T020 [US2] Create `components/forms/GoalForm.tsx`: Render title input, end date picker, submit/cancel buttons with error display
-- [ ] T021 [US2] Create `components/forms/AddGoalModal.tsx`: Wrap GoalForm in shadcn Dialog modal with title and header
-- [ ] T022 [US2] Implement "Add Goal" button in DashboardLayout: Set `isModalOpen` state when clicked
-- [ ] T023 [US2] Implement form validation: Check empty title, future date, duplicate goal before submission
-- [ ] T024 [US2] Implement form submission: Call `useGoals.addGoal()` hook with title and date, clear form errors on success, close modal
-- [ ] T025 [US2] Implement form error handling: Display validation error messages under relevant fields (title field, date field, or general)
-- [ ] T026 [US2] Implement modal close: Add close button and clicking-outside behavior to set `isModalOpen` to false
-- [ ] T027 [US2] Implement success feedback: Goal appears in current goals column immediately after creation (within 1-2 seconds network delay)
+- [x] T020 [US2] Create `components/forms/GoalForm.tsx`: Render title input, end date picker, submit/cancel buttons with error display
+- [x] T021 [US2] Create `components/forms/AddGoalModal.tsx`: Wrap GoalForm in shadcn Dialog modal with title and header
+- [x] T022 [US2] Implement "Add Goal" button in DashboardLayout: Set `isModalOpen` state when clicked
+- [x] T023 [US2] Implement form validation: Check empty title, future date, duplicate goal before submission
+- [x] T024 [US2] Implement form submission: Call `useGoals.addGoal()` hook with title and date, clear form errors on success, close modal
+- [x] T025 [US2] Implement form error handling: Display validation error messages under relevant fields (title field, date field, or general)
+- [x] T026 [US2] Implement modal close: Add close button and clicking-outside behavior to set `isModalOpen` to false
+- [x] T027 [US2] Implement success feedback: Goal appears in current goals column immediately after creation (within 1-2 seconds network delay)
 
 **Parallel Opportunities**:
 - T020-T021 can start in parallel (different components)
@@ -126,14 +126,14 @@ These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
 **Tasks**:
 
-- [ ] T028 [US3] Create confirmation dialog component: Use shadcn AlertDialog for delete confirmation with "Delete" and "Cancel" buttons
-- [ ] T029 [US3] Implement checkbox interaction: When checkbox clicked on current goal, call `useGoals.completeGoal()` to update status to "completed"
-- [ ] T030 [US3] Implement delete button (current column): Show delete confirmation dialog when clicked (set selectedGoalForDelete state)
-- [ ] T031 [US3] Implement delete confirmation dialog: Display goal title, show "This action cannot be undone" warning
-- [ ] T032 [US3] Implement delete confirmation actions: "Delete" button calls `useGoals.deleteGoal()`, "Cancel" closes dialog without deleting
-- [ ] T033 [US3] Implement delete button (completed column): Delete directly with confirmation (same as current column)
-- [ ] T034 [US3] Implement localStorage persistence: Save goals array to localStorage after each add/complete/delete operation
-- [ ] T035 [US3] Verify hydration safety: Ensure localStorage access only happens in useEffect with `typeof window !== 'undefined'` check
+- [x] T028 [US3] Create confirmation dialog component: Use shadcn AlertDialog for delete confirmation with "Delete" and "Cancel" buttons
+- [x] T029 [US3] Implement checkbox interaction: When checkbox clicked on current goal, call `useGoals.completeGoal()` to update status to "completed"
+- [x] T030 [US3] Implement delete button (current column): Show delete confirmation dialog when clicked (set selectedGoalForDelete state)
+- [x] T031 [US3] Implement delete confirmation dialog: Display goal title, show "This action cannot be undone" warning
+- [x] T032 [US3] Implement delete confirmation actions: "Delete" button calls `useGoals.deleteGoal()`, "Cancel" closes dialog without deleting
+- [x] T033 [US3] Implement delete button (completed column): Delete directly with confirmation (same as current column)
+- [x] T034 [US3] Implement localStorage persistence: Save goals array to localStorage after each add/complete/delete operation
+- [x] T035 [US3] Verify hydration safety: Ensure localStorage access only happens in useEffect with `typeof window !== 'undefined'` check
 
 **Parallel Opportunities**:
 - T028-T029 can start in parallel (independent implementations)
@@ -157,11 +157,11 @@ These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
 **Tasks**:
 
-- [ ] T036 [US3b] Implement urgency display in GoalCard: Call `isUrgent()` function from lib/dates.ts to determine highlighting
-- [ ] T037 [US3b] Implement urgent styling: Add Tailwind class to GoalCard background when `isUrgent()` returns true (e.g., `bg-pastel-yellow`)
-- [ ] T038 [US3b] Implement days remaining styling: Show different text color/weight for urgent goals (darker text on yellow background)
-- [ ] T039 [US3b] Implement urgent label: Show "(Urgent)" text or icon next to days remaining for goals within 3 days
-- [ ] T040 [US3b] Test urgency calculations: Verify getDaysRemaining() returns correct values for various end dates
+- [x] T036 [US3b] Implement urgency display in GoalCard: Call `isUrgent()` function from lib/dates.ts to determine highlighting
+- [x] T037 [US3b] Implement urgent styling: Add Tailwind class to GoalCard background when `isUrgent()` returns true (e.g., `bg-pastel-yellow`)
+- [x] T038 [US3b] Implement days remaining styling: Show different text color/weight for urgent goals (darker text on yellow background)
+- [x] T039 [US3b] Implement urgent label: Show "(Urgent)" text or icon next to days remaining for goals within 3 days
+- [x] T040 [US3b] Test urgency calculations: Verify getDaysRemaining() returns correct values for various end dates
 
 **Parallel Opportunities**:
 - T036-T037 can run in parallel (styling and logic)
@@ -172,12 +172,12 @@ These tasks must complete before Phase 3. Multiple tasks can run in parallel.
 
 **Purpose**: Apply design system and finalize responsive layout
 
-- [ ] T041 [P] Configure Tailwind color utilities: Ensure `bg-pastel-*`, `text-pastel-*` classes work correctly in components
-- [ ] T042 [P] Set button styling: 44px+ height on mobile, hover states using pastel colors
-- [ ] T043 [P] Set input/date picker styling: Consistent with pastels, at least 44px height on mobile
-- [ ] T044 [P] Implement focus states: All interactive elements have visible focus for accessibility (44px touch targets minimum)
-- [ ] T045 [P] Test responsive breakpoints: Verify layout adapts correctly at 375px, 768px, 1920px+ widths
-- [ ] T046 Create `app/layout.tsx`: Apply globals.css, set page title "DoIt - Goal Tracker", ensure root layout wraps app correctly
+- [x] T041 [P] Configure Tailwind color utilities: Ensure `bg-pastel-*`, `text-pastel-*` classes work correctly in components
+- [x] T042 [P] Set button styling: 44px+ height on mobile, hover states using pastel colors
+- [x] T043 [P] Set input/date picker styling: Consistent with pastels, at least 44px height on mobile
+- [x] T044 [P] Implement focus states: All interactive elements have visible focus for accessibility (44px touch targets minimum)
+- [x] T045 [P] Test responsive breakpoints: Verify layout adapts correctly at 375px, 768px, 1920px+ widths
+- [x] T046 Create `app/layout.tsx`: Apply globals.css, set page title "DoIt - Goal Tracker", ensure root layout wraps app correctly
 
 ---
 
